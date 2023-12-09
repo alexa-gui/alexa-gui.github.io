@@ -161,6 +161,7 @@ export default hopeTheme({
       // mathjax: true,
 
       mark: true,
+      hint: true,
 
       // install mermaid before enabling it
       // mermaid: true,
