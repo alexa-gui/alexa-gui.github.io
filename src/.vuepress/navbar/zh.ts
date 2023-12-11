@@ -1,52 +1,42 @@
 import { navbar } from "vuepress-theme-hope";
 
 export const zhNavbar = navbar([
-  "/zh/",
-  "/zh/demo/",
+  "/", //链接 直接代表src开始 存储文章
+  {text: "简介", icon:"book", link:"/intro"},
+
   {
-    text: "博文",
-    icon: "pen-to-square",
-    prefix: "/zh/posts/",
-    children: [
-      {
-        text: "苹果",
-        icon: "pen-to-square",
-        prefix: "apple/",
-        children: [
-          { text: "苹果1", icon: "pen-to-square", link: "1" },
-          { text: "苹果2", icon: "pen-to-square", link: "2" },
-          "3",
-          "4",
-        ],
-      },
-      {
-        text: "香蕉",
-        icon: "pen-to-square",
-        prefix: "banana/",
-        children: [
-          {
-            text: "香蕉 1",
-            icon: "pen-to-square",
-            link: "1",
-          },
-          {
-            text: "香蕉 2",
-            icon: "pen-to-square",
-            link: "2",
-          },
-          "3",
-          "4",
-        ],
-      },
-      { text: "樱桃", icon: "pen-to-square", link: "cherry" },
-      { text: "火龙果", icon: "pen-to-square", link: "dragonfruit" },
-      "tomato",
-      "strawberry",
-    ],
+    text: "编程",
+    icon: "computer",
+    children: [ //设置子分集
+      {text: "Python", icon: "code", link: ""},
+      {text: "网站设计", icon: "code", link: ""},
+      {text: "数据分析", icon: "code", link: ""},
+    ]
+
   },
+
   {
-    text: "V2 文档",
-    icon: "book",
-    link: "https://theme-hope.vuejs.press/zh/",
+    text: "工程",
+    icon: "hammer",
+    children: [ //设置子分集
+      {text: "CAD", icon: "computer", link: ""},
+      {text: "机械", icon: "car", link: ""},
+      {text: "结构", icon: "bridge", link: ""},
+      {text: "电子", icon: "lightbulb", link: ""},
+      {text: "数学", icon: "calculator", link: ""},
+    ]
+
   },
+
+  {
+    text: "项目",
+    icon: "bolt",
+    children: [ //设置子分集
+      {text: "aaa", icon: "code", link: ""},
+      {text: "bbb", icon: "code", link: ""},
+      {text: "ccc", icon: "code", link: ""},
+    ]
+
+  },
+
 ]);

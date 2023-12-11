@@ -24,12 +24,7 @@ export default hopeTheme({
   blog: {
     medias: {
       Email: "mailto:guizhiyi.alexandra@gmail.com",
-      Instagram: "https://example.com",
-      Linkedin: "https://example.com",
-      Wechat: "https://example.com",
-      Weibo: "https://example.com",
-      Whatsapp: "https://example.com",
-      Youtube: "https://example.com",
+      Linkedin: "https://www.linkedin.com/in/alexa-gui-0865b1296/?originalSubdomain=uk",
     },
   },
 
