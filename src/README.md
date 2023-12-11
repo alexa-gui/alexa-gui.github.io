@@ -3,7 +3,7 @@ home: true
 layout: BlogHome
 icon: home
 title: ALEXA | Blog Home
-heroImage: /logo_white.png
+heroImage: /tree.jpg
 heroText: ALEXA
 tagline: AWAKE AND AWARE
 bgImage: /bg.jpg

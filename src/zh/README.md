@@ -3,7 +3,7 @@ home: true
 layout: BlogHome
 icon: home
 title: ALEXA | 博客主页
-heroImage: /logo_white.png
+heroImage: /tree.jpg
 heroText: ALEXA
 heroFullScreen: true
 tagline: AWAKE AND AWARE
