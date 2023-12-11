@@ -2,10 +2,11 @@
 home: true
 layout: BlogHome
 icon: home
-title: Blog Home
-heroImage: /logo.svg
+title: ALEXA | Blog Home
+heroImage: /logo_white.png
 heroText: ALEXA
 tagline: AWAKE AND AWARE
+bgImage: /bg.jpg
 heroFullScreen: true
 projects:
   - icon: project

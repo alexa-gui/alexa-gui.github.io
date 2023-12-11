@@ -2,11 +2,12 @@
 home: true
 layout: BlogHome
 icon: home
-title: 博客主页
-heroImage: /logo.svg
+title: ALEXA | 博客主页
+heroImage: /logo_white.png
 heroText: ALEXA
 heroFullScreen: true
 tagline: AWAKE AND AWARE
+bgImage: /bg.jpg
 projects:
   - icon: project
     name: 项目名称
