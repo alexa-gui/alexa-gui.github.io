@@ -24,7 +24,7 @@ export default hopeTheme({
   blog: {
     medias: {
       Email: "mailto:guizhiyi.alexandra@gmail.com",
-      Linkedin: "https://www.linkedin.com/in/alexa-gui-0865b1296/?originalSubdomain=uk",
+      Linkedin: "https://www.linkedin.com/in/alexa-gui-0865b1296",
     },
   },
 
@@ -89,10 +89,22 @@ export default hopeTheme({
     // install @waline/client before enabling it
     // WARNING: This is a test server for demo only.
     // You should create and use your own comment service in production.
-    // comment: {
-    //   provider: "Waline",
-    //   serverURL: "https://waline-comment.vuejs.press",
-    // },
+    comment: {
+      provider: "Waline",
+      serverURL: "https://comment.axagiii.com",
+      reaction: [
+        '/reactions/smile.png',
+        '/reactions/lovingit.png',
+        '/reactions/surprised.png',
+        '/reactions/awkward.png',
+        '/reactions/tears.png',
+        '/reactions/scared.png',
+      ],
+      comment: true,
+      pageview: true,
+      copyright: false,
+      dark: "auto",
+    },
 
     // all features are enabled for demo, only preserve features you need here
     mdEnhance: {
