@@ -5,4 +5,8 @@ cover: /assets/images/cover3.jpg
 
 # 介绍页
 
-将你的个人介绍和档案放置在此处。
+剑桥大学工程系
+
+“Hinc lucem et pocula sacra.”
+
+纪录由此开始
