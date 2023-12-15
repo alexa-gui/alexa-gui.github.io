@@ -1,0 +1,1 @@
+import{_ as e}from"./plugin-vue_export-helper-x3n3nnut.js";import{o,c as t,d as l}from"./app-WkD0NKcG.js";const n={},c=l("ul",null,[l("li",null,"文件名不要使用中文"),l("li",null,"用减号代替空格"),l("li",null,"文章内开始第一行要打三个- - -")],-1),_=[c];function s(r,a){return o(),t("div",null,_)}const d=e(n,[["render",s],["__file","blog1.html.vue"]]);export{d as default};
