@@ -199,10 +199,24 @@ $$
 
 
 
-## 10. 视频
+## 10. 多媒体
 
-::: md-demo
+::: md-demo 多媒体
 
+<AudioPlayer src="https://theme-hope-assets.vuejs.press/files/sample.mp3" />
 
+<AudioPlayer src="/music/sample.mp3" />
+
+<BiliBili bvid="xxxxxxx" />
+
+<PDF url="//theme-hope-assets.vuejs.press/files/sample.pdf" />
+
+<VidStack src="https://vp-demo.u2sb.com/video/caminandes_03_llamigos_720p.mp4" />
+
+<YouTube id="0JJPfz5dg20" />
+
+<PDF url="/lecture.pdf" />
+
+<VidStack src="https://vp-demo.u2sb.com/video/caminandes_03_llamigos_720p.mp4" />
 
 :::

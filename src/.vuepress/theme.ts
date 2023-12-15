@@ -110,7 +110,7 @@ export default hopeTheme({
         "VPBanner",
         "VPCard",
         // "ArtPlayer",
-        // "AudioPlayer",
+        "AudioPlayer",
         // "Badge",
         "BiliBili",
         // "FontIcon",
