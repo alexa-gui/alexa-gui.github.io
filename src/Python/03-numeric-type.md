@@ -1,6 +1,4 @@
-### Translation to English (Markdown Format)
-
-```markdown
+---
 title: Numeric Type
 date: 2023-12-18 13:40:10
 author: Alexa
@@ -21,8 +19,7 @@ sidebarIcon: true
 headerDepth: 5
 comment: true
 lastUpdated: true
-
-```
+---
 
 ## 1. Characteristics of Numeric Types
 

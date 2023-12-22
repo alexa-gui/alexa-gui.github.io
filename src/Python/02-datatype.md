@@ -1,4 +1,4 @@
-```markdown
+---
 title: Data Types
 date: 2023-12-17 13:40:10
 author: Alexa
@@ -19,7 +19,7 @@ sidebarIcon: true
 headerDepth: 5
 comment: true
 lastUpdated: true
-```
+---
 
 ## Data Types
 
