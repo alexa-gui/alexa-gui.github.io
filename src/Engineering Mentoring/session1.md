@@ -21,3 +21,4 @@ comment: true
 lastUpdated: true
 ---
 
+## Session 1 – Introduction (Dec. 22nd)
