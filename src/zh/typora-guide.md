@@ -1,5 +1,5 @@
 ---
-title: blog
+title: Typora guide
 date: 2023-12-13 13:40:10
 author: Alexa
 isOriginal: true
@@ -220,3 +220,4 @@ $$
 <VidStack src="https://vp-demo.u2sb.com/video/caminandes_03_llamigos_720p.mp4" />
 
 :::
+
