@@ -56,7 +56,7 @@ print("hello bornforthis")
 
 ::: md-demo 插入图片
 
-![image-20231215131801006](./blog1.assets/image-20231215131801006.png)
+![image-20231222233936401](./typora-guide.assets/image-20231222233936401.png)
 
 :::
 
