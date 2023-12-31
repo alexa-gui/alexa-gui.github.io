@@ -8,7 +8,7 @@ category:
 tag:
     - web
     - typora
-icon: coding
+icon: code
 sticky: false
 star: false
 article: true

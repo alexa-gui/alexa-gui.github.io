@@ -638,4 +638,538 @@ print(string)
 Money is 190
 ```
 
-To address these issues, the **format** method is introduced.
+### 6.1 .format()
+
+1. Single curly braces `{}`: Three methods
+
+```python
+string = "Hi {}, welcome to XiaMen.".format("Alexa")
+print(string)
+
+template_string = "Hi {}, welcome to XiaMen."
+print(template_string.format("Alexa"))
+
+new_string = template_string.format("Alexa")
+print(new_string)
+
+# output
+Hi Alexa, welcome to XiaMen.
+Hi Alexa, welcome to XiaMen.
+Hi Alexa, welcome to XiaMen.
+```
+
+2. Multiple curly braces above "filled in order"
+
+```python
+string = "Hi {}, welcome to {}.".format("Alexa", "XiaMen")
+print(string)
+
+template_string = "Hi {}, welcome to {}."
+print(template_string.format("Alexa", "XiaMen"))
+
+new_string = template_string.format("Alexa", "XiaMen")
+print(new_string)
+
+# output
+Hi Alexa, welcome to XiaMen.
+Hi Alexa, welcome to XiaMen.
+Hi Alexa, welcome to XiaMen.
+```
+
+3. Multiple curly braces specifying positions "index specified"
+
+```python
+string = "Hi {1}, welcome to {0}.".format("0", "1")
+print(string)
+
+string = "Hi {1}, welcome to {0}.".format("XiaMen", "Alexa")
+# 0th position input:XiaMen, 1st position input:Alexa
+print(string)
+
+template_string = "Hi {1}, welcome to {0}."
+print(template_string.format("Shanghai", "Alexa"))
+
+new_string = template_string.format("Shenzhen", "Alexa")
+print(new_string)
+
+# output
+Hi 1, welcome to 0.
+Hi Alexa, welcome to XiaMen.
+Hi Alexa, welcome to Shanghai.
+Hi Alexa, welcome to Shenzhen.
+```
+
+4. Parameter specification
+
+```python
+string = "Hi {name}, welcome to {city}.".format(name="name", city="city")
+print(string)
+
+string = "Hi {name}, welcome to {city}.".format(name="Alexa", city="XiaMen")
+print(string)
+
+template_string = "Hi {name}, welcome to {city}."
+print(template_string.format(name="Alexa", city="Shanghai"))
+
+new_string = template_string.format(name="Alexa", city="Shenzhen")
+print(new_string)
+
+# output
+Hi name, welcome to city.
+Hi Alexa, welcome to XiaMen.
+Hi Alexa, welcome to Shanghai.
+Hi Alexa, welcome to Shenzhen.
+```
+
+5. Preserve specified decimal places: `{:.xf}` preserves x decimal places
+
+```python
+string = "Money is {:.3f}".format(190)  # .3f preserves three decimal places
+print(string)
+
+# output
+Money is 190.000
+```
+
+### 6.2 f
+
+1. Directly read variables (variables must be created in advance)
+
+```python
+name = "Alexa"
+city = "XiaMen"
+string = f"Hi {name}, welcome to {city}."
+print(string)
+# Variables must be created before using f
+
+# output
+Hi Alexa, welcome to XiaMen.
+```
+
+2. Preserve decimal places `{variable: .xf}` keeps variable to x decimal places
+
+```python
+money = 190
+string = f"Money is {money:.3f}."
+print(string)
+
+# output
+Money is 190.000.
+```
+
+### 6.3 % formatting
+
+- `%d`: Integer
+- `%s`: String
+- `%f`: Float
+
+1. Single position input (three methods: use % + number to input; d/s/f controls input type)
+
+```python
+string = "Money is %d"
+new_s = string % 13
+print(new_s)
+
+print(string % 19)
+
+string = "Money is %d" % 190
+print(string)
+
+# output
+Money is 13 
+Money is 18 
+Money is 190 
+```
+
+2. Multiple position input: % must be followed by parentheses
+
+```python
+string = "Money is %d %s"
+new_s = string % (13, "发大财")
+print(new_s)
+
+print(string % (18, "暴富"))
+
+string = "Money is %d %s" % (190, "666")
+print(string)
+
+# output
+Money is 13 发大财
+Money is 18 暴富
+Money is 190 666
+```
+
+3. Preserve decimal places: %.xf
+
+```python
+string = "Money is %.3f"
+new_s = string % 13
+print(new_s)
+
+print(string % 18)
+
+string = "Money is %.3f" % 190
+print(string)
+
+# output
+Money is 13.000
+Money is 18.000
+Money is 190.000
+```
+
+### 6.4 f and format, % advantages and disadvantages
+
+format and % are like templates, and once the template is created, it can be used directly when needed; while f is like a bank teller, registering while asking, and cannot create a template in advance.
+
+## 7. Immutability of Strings
+
+Strings are immutable, and no element can be changed in the string. If you want to change an element in the string, a new string needs to be created.
+
+```python
+s = "hello bornforthis"
+s[0] = "a"
+
+# ---output---
+Traceback (most recent call last):
+  File "/Users/huangjiabao/GitHub/iMac/Pycharm/StudentCoder/39-YDN/lesson3.py", line 2, in <module>
+    s[0] = "a"
+TypeError: 'str' object does not support item assignment
+```
+
+In addition to using replace, you can also use string concatenation
+
+```python
+string = "Hello, Alexa!"
+new_string = "a" + string[1:] # using slicing
+print(new_string)
+
+# output
+aello, Alexa!
+```
+
+## 8. String Escaping
+
+| Escape Character | Meaning                              | Example                  |
+| ---------------- | ------------------------------------ | ------------------------ |
+| `\\`             | Backslash symbol, to get `\`         | `s = "bor\\nforthis"`    |
+| `\b`             | Backspace, similar to the delete key | `s = "bornff\borthis"`   |
+| `\n`             | Newline                              | `s = "bornfor\nthis"`    |
+| `\t`             | Tab                                  | `s = "born\tfor\tthis"`  |
+| `r`              | Cancel escaping "R and r" both work  | `s = r"born\tfor\tthis"` |
+
+Example code:
+
+```python
+s = "bor\\nforthis"
+# Originally using \n would cause the string to break, but if you want to output \n, you need to add another \ in front of \
+print(s)
+
+# output
+bor\nforthis
+
+s = "bornff\borthis"
+# \b deletes the previous character f
+print(s)
+
+# output
+bornforthis
+
+s = "bornfor\nthis"
+# \n newline
+print(s)
+
+# output
+bornfor
+this
+
+s = "born\t
+
+for\tthis"
+# \t tab
+print(s)
+
+# output
+born    for    this
+
+s = r"born\tfor\tthis"
+# You can also use r to cancel escaping
+print(s)
+
+# output
+born\tfor\tthis
+```
+
+## 9 String Concatenation
+
+```python
+s1 = 'born'
+s2 = 'forthis'
+print(s1 + s2)  # Forms a single string
+print(s1, s2)  # Still two independent strings
+
+# ---output---
+bornforthis
+born forthis
+
+
+s1 = '*-love-'
+print(s1 * 10)
+
+# ---output---
+*-love-*-love-*-love-*-love-*-love-*-love-*-love-*-love-*-love-*-love-
+```
+
+I want to add an * at the end of the output above. What should I do?
+
+```python
+print(s1*10 + "*")
+print(s1*10 + s1[0])
+print(s1*10, end="*")
+```
+
+## 10. Reading User Input
+
+### 10.1 input() Basic Usage
+
+Use `input()` to get user input
+
+```python
+user_input = input()
+print(user_input)
+
+# output
+alexa # self input
+alexa # print
+```
+
+### 10.2 input() Input Prompt
+
+But the above code has a small problem: it is not very intuitive to know during runtime that the program needs our input, especially for non-programmer users.
+
+![image-20231231074522629](./04-string.assets/image-20231231074522629.png)
+
+How to solve it? - Use input prompt.
+
+`input()` function supports writing a string for prompting.
+
+```python
+user_input = input("Enter your name:>>>")
+print("user input name:", user_input)
+
+# output
+Enter your name:>>> alexa
+user input name:  alexa
+```
+
+![image-20231231074540136](./04-string.assets/image-20231231074540136.png)
+
+### 10.3 input() Characteristics
+
+#### 10.3.1 input() Type is String "str"
+
+```python
+In [2]: type(input("i:>>>"))
+i:>>>1
+Out[2]: str
+
+In [3]: type(input("i:>>>"))
+i:>>>[1,2,3,4]
+Out[3]: str
+
+In [4]: type(input("i:>>>"))
+i:>>>(1,2,3,4)
+Out[4]: str
+```
+
+From the above code examples, we can see that the data type obtained by `input()` is always **string**.
+
+Knowing the characteristics of `input()`, how to solve this problem? - How can users directly enter the original type and get the original type.
+
+#### 10.3.2 Method One: Forced Type Conversion
+
+```python
+In [10]: n = int(input(':>>>'))
+:>>>12
+
+In [11]: type(n)
+Out[11]: int
+
+In [12]: # There are some issues
+
+In [13]: s = list(input(':>>>'))
+:>>>[1, 2, 3, 4, 5]
+
+In [14]: s  # Gets each element separately
+Out[14]: ['[', '1', ',', ' ', '2', ',', ' ', '3', ',', ' ', '4', ',', ' ', '5', ']']
+
+In [15]: type(s)
+Out[15]: list
+
+In [16]: b = bool(input(':>>>'))
+:>>>True
+
+In [17]: b
+Out[17]: True
+
+In [18]: type(b)
+Out[18]: bool
+```
+
+- Suitable for: numbers, strings, booleans
+- Not suitable for: lists, tuples, dictionaries, sets
+
+#### 10.3.3 Method Two: Use eval()
+
+1. Wonderful use of eval()
+
+```python
+In [28]: s = eval(input(':>>>'))
+:>>>12
+
+In [29]: type(s), s
+Out[29]: (int, 12)
+
+In [30]: s = eval(input(':>>>'))
+:>>>[1, 2, 3]
+
+In [31]: type(s), s
+Out[31]: (list, [1, 2, 3])
+
+In [32]: s = eval(input(':>>>'))
+:>>>(1, 2, 3)
+
+In [33]: type(s), s
+Out[33]: (tuple, (1, 2, 3))
+
+In [34]: s = eval(input(':>>>'))
+:>>>{1, 2, 3}
+
+In [35]: type(s), s
+Out[35]: (set, {1, 2, 3})
+
+In [36]: s = eval(input(':>>>'))
+:>>>True
+
+In [37]: type(s), s
+Out[37]: (bool, True)
+
+In [38]: s = eval(input(':>>>'))
+:>>>{'a': 1, 'b': 2}
+
+In [39]: type(s), s
+Out[39]: (dict, {'a': 1, 'b': 2})
+```
+
+2. Problems with eval()
+
+The code above seems to solve our problem, but it comes with issues that need attention.
+
+```python
+In [14]: s = eval(input(":>>>"))
+:>>>string
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[14], line 1
+----> 1 s = eval(input(":>>>"))
+
+File <string>:1
+
+NameError: name 'string' is not defined
+```
+
+Let's analyze the "magic" of `eval()`:
+
+1. Get user input: `s = eval(input(':>>>'))`
+2. Input `string` will be obtained, and after conversion by `eval`, it becomes a variable similar to `string`. However, in our previous code, we did not create a variable named `string`.
+3. Therefore, an error is raised. The error is quite obvious: `NameError: name 'string' is not defined`.
+4. The solution is straightforward: either create a variable named `string` before getting user input, or intentionally add single quotes, double quotes, or triple quotes around the input.
+
+```python
+In [17]: string = "hello"
+
+In [18]: s = eval(input(":>>>"))
+:>>>string
+
+In [19]: s
+Out[19]: 'hello'
+
+In [20]: num = 12
+
+In [21]: s = eval(input(":>>>"))
+:>>>num
+
+In [22]: s
+Out[22]: 12
+
+In [23]: type(s), s
+Out[23]: (int, 12)
+
+In [24]: s = eval(input(":>>>"))
+:>>>"string"
+
+In [25]: type(s), s
+Out[25]: (str, 'string')
+```
+
+3. Tricks with `eval()`
+
+Task requirement: Get user input, calculate the sum, difference, product, and quotient of two digits.
+
+```python
+In [26]: eval(input(":>>>"))
+:>>>1+1
+Out[26]: 2
+
+In [27]: eval(input(":>>>"))
+:>>>2-1
+Out[27]: 1
+
+In [28]: eval(input(":>>>"))
+:>>>9*8
+Out[28]:72
+
+In [29]: eval(input(":>>>"))
+:>>>9/3
+Out[29]: 3.0
+```
+
+
+
+## 11. Trying Out
+
+Get user input to display the sum of two integers.
+
+**Requirements:**
+
+- Use only one `input` function.
+- User input format: num1 num2
+- Output the calculation result.
+
+**Input:**
+
+```python
+5 6
+```
+
+**Output:**
+
+```python
+11
+```
+
+:::code-tabs
+
+@tab Code1
+
+```python
+nums = eval(input(":>>>").replace(" ", "+")) # use eval and replace
+print(nums)
+```
+
+@tab Code2
+
+```python
+nums = input(":>>>").split() # split directly at the space and return a list
+sum = int(nums[0]) + int(nums[1]) # convert to numbers
+print(sum)
+```
