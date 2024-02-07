@@ -582,3 +582,197 @@ print(numbers)
 ['4', '7', '8', '9', '6', '5', '2', '3', '1']
 ```
 
+## 16. 列表的深浅拷贝
+
+### 16.1 所存在的问题
+
+```python
+x = ['a', 'b', 'c']
+y = x
+print(f'original:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}')
+y[0] = 'y'
+print(f'after:\n\tx:{x}\n\ty:{y}\n\tid_y:{id(y)}')
+# id用来获取变量的物理地址
+# 全局思维
+
+# output
+original:
+	x:['a', 'b', 'c']
+	y:['a', 'b', 'c']
+	id_x:4518098176
+after:
+	x:['y', 'b', 'c']
+	y:['y', 'b', 'c']
+	id_y:4518098176
+```
+
+我们发现在修改 y 的同时 x 也会被修改，为什么会产生这个问题呢？
+
+是因为在进行 `y = x` 的赋值时，只是进行了列表地址的赋值，x 和 y 实际上指向的是同一个列表。
+
+1. 证明一： Python id用来检查变量的物理地址（也就是在计算机中所在的位置）
+
+从上面的代码结果可知：x，y指向的是同一个列表，因为id相同
+
+2. 证明二：可以直接用可视化查看
+
+![image-20240101232322876](./05-list.assets/image-20240101232322876.png)
+
+如何解决呢 —— `copy()`
+
+### 16.2 .copy()
+
+x 和 y id会不同
+
+```python
+x = ['a', 'b', 'c']
+y = x.copy()
+print(f'original:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}')
+y[0] = 'y'
+print(f'after:\n\tx:{x}\n\ty:{y}\n\tid_y:{id(y)}')
+
+# output
+original:
+	x:['a', 'b', 'c']
+	y:['a', 'b', 'c']
+	id_x:4543512448
+after:
+	x:['a', 'b', 'c']
+	y:['y', 'b', 'c']
+	id_y:4543533056   
+```
+
+### 16.3 copy 所存在的问题「浅拷贝」
+
+```python
+x = ['a', 'b', 'c', [1, 2, 3]]
+y = x.copy()
+print(f'original:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+y[0] = 'y'
+print(f'after1:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+y[3][0] = 'x'
+print(f'after2:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+
+# output
+
+original:
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['a', 'b', 'c', [1, 2, 3]]
+	id_x:4655604992
+	id_y:4655604864
+	id_children x[3]:4655600832
+	id_children y[3]:4655600832
+after1: #证明copy的实现 修改y不会对x有影响 因为x和y是两个不同的id
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['y', 'b', 'c', [1, 2, 3]]
+	id_x:4655604992
+	id_y:4655604864
+	id_children x[3]:4655600832
+	id_children y[3]:4655600832
+after2: #证明修改y中子列表也会对x产生影响 因为x和y子列表的id是相通的
+	x:['a', 'b', 'c', ['x', 2, 3]]
+	y:['y', 'b', 'c', ['x', 2, 3]]
+	id_x:4655604992
+	id_y:4655604864
+	id_children x[3]:4655600832
+	id_children y[3]:4655600832
+```
+
+1. 证明一：从上面的代码可知，子列表的id是相同的，代表x和y的子列表是同一个列表
+2. 证明二：从可视化可知
+
+![image-20240101234822275](./05-list.assets/image-20240101234822275.png)
+
+所以，copy实现的是浅拷贝，只拷贝列表的第一层，嵌套的列表则不会拷贝。
+
+
+
+### 16.4 deepcopy()
+
+使用深拷贝需要导入库
+
+```python
+from copy import deepcopy
+```
+
+```python
+from copy import deepcopy
+x = ['a', 'b', 'c', [1, 2, 3]]
+y = deepcopy(x)
+print(f'original:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+y[0] = 'y'
+print(f'after1:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+y[3][0] = 'x'
+print(f'after2:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+
+# output
+
+original:
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['a', 'b', 'c', [1, 2, 3]]
+	id_x:5009087680
+	id_y:5009087552
+	id_children x[3]:5009083584
+	id_children y[3]:5009087616
+after1:
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['y', 'b', 'c', [1, 2, 3]]
+	id_x:5009087680
+	id_y:5009087552
+	id_children x[3]:5009083584
+	id_children y[3]:5009087616
+after2:
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['y', 'b', 'c', ['x', 2, 3]]
+	id_x:5009087680
+	id_y:5009087552
+	id_children x[3]:5009083584
+	id_children y[3]:5009087616
+```
+
+1. 使用deepcopy之后子列表的id也不一样了，所以不会被同时修改
+2. 可视化
+
+![image-20240102000114187](./05-list.assets/image-20240102000114187.png)
+
+### 16.5 一个特例
+
+我们上面说了列表的深浅拷贝，但是浅拷贝的时候，虽然子列表没有完全被copy出来，但是有一种情况下不会互相影响。
+
+也就是说，在浅拷贝的代码中，什么情况下修改子列表不会互相影响
+
+```python
+x = ['a', 'b', 'c', [1, 2, 3]]
+y = x.copy()
+print(f'original:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+y[0] = 'y'
+print(f'after1:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+
+# 直接修改y[3]为一个新的列表，而不是修改y[3][0]
+y[3] = ['x', 2, 3]
+print(f'after2:\n\tx:{x}\n\ty:{y}\n\tid_x:{id(x)}\n\tid_y:{id(y)}\n\tid_children x[3]:{id(x[3])}\n\tid_children y[3]:{id(y[3])}')
+
+# output
+original:
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['a', 'b', 'c', [1, 2, 3]]
+	id_x:4674361856
+	id_y:4674361728
+	id_children x[3]:4674357824
+	id_children y[3]:4674357824
+after1:
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['y', 'b', 'c', [1, 2, 3]]
+	id_x:4674361856
+	id_y:4674361728
+	id_children x[3]:4674357824
+	id_children y[3]:4674357824
+after2:
+	x:['a', 'b', 'c', [1, 2, 3]]
+	y:['y', 'b', 'c', ['x', 2, 3]]
+	id_x:4674361856
+	id_y:4674361728
+	id_children x[3]:4674357824
+	id_children y[3]:4674361792
+```
+
